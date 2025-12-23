@@ -2,7 +2,7 @@
 // @name         Text To AI
 // @namespace    http://tampermonkey.net/
 // @description  -
-// @version      3.1
+// @version      3.2
 // @author       -
 // @match        https://ecfr.eu/*
 // @match        https://euractiv.it/*
@@ -42,8 +42,8 @@
                 "#flip-pay",
                 ".pt-3.border-top"
             ].forEach((e) => {
-                textBodyElement = document.querySelector(e);
                 if(textBodyElement != null) { return; }
+                textBodyElement = document.querySelector(e);
             });
             if (textBodyElement != null) {
                 let textOut = "";
