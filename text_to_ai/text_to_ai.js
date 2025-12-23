@@ -2,13 +2,14 @@
 // @name         Text To AI
 // @namespace    http://tampermonkey.net/
 // @description  -
-// @version      2.0
+// @version      3.0
 // @author       -
 // @match        https://ecfr.eu/*
 // @match        https://euractiv.it/*
 // @match        https://www.euractiv.com/*
 // @match        https://www.ilpost.it/*
 // @match        https://*.euronews.com/*
+// @match        https://eucrim.eu/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        GM_registerMenuCommand
 // @grant        GM_getValue
@@ -31,8 +32,18 @@
         }, undefined, undefined, false);
     });
     window.addEventListener("keypress", (event) => {
-        if(event.key == "c"){
-            let textBodyElement = document.querySelector(".text-body.tts-input") || document.querySelector(".c-article-content.js-article-content") || document.querySelector("#singleBody") || document.querySelector(".ea-article-body-content") || document.querySelector("#flip-pay");
+        if(event.key == "c") {
+            let textBodyElement = null;
+            [
+                ".text-body.tts-input",
+                ".c-article-content.js-article-content",
+                "#singleBody",
+                ".ea-article-body-content",
+                "#flip-pay"
+            ].forEach((e) => {
+                textBodyElement = document.querySelector(e);
+                if(textBodyElement != null) { return; }
+            });
             if (textBodyElement != null) {
                 let textOut = "";
                 let textOut_prontAi = "";
