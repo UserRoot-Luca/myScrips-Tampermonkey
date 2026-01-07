@@ -2,7 +2,7 @@
 // @name         Text To AI
 // @namespace    http://tampermonkey.net/
 // @description  -
-// @version      3.2
+// @version      3.3
 // @author       -
 // @match        https://ecfr.eu/*
 // @match        https://euractiv.it/*
@@ -10,6 +10,7 @@
 // @match        https://www.ilpost.it/*
 // @match        https://*.euronews.com/*
 // @match        https://eucrim.eu/*
+// @match        https://alternativeto.net/news/*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        GM_registerMenuCommand
 // @grant        GM_getValue
@@ -40,7 +41,8 @@
                 "#singleBody",
                 ".ea-article-body-content",
                 "#flip-pay",
-                ".pt-3.border-top"
+                ".pt-3.border-top",
+                ".md_News"
             ].forEach((e) => {
                 if(textBodyElement != null) { return; }
                 textBodyElement = document.querySelector(e);
