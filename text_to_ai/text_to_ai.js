@@ -2,7 +2,7 @@
 // @name         Text To AI
 // @namespace    http://tampermonkey.net/
 // @description  -
-// @version      3.3
+// @version      4.0
 // @author       -
 // @match        https://ecfr.eu/*
 // @match        https://euractiv.it/*
@@ -57,12 +57,16 @@
                     }
                 }
                 textOut = textOut.trim().replace(/\t+/g, ' ').replace(/\s+/g, ' ');
-                if (prontAi_typeSelector_value == 0) {
-                    textOut_prontAi = textOut;
-                } else if (prontAi_typeSelector_value == 1) {
-                    textOut_prontAi = prontAiSummary + textOut + " \"";
-                } else if (prontAi_typeSelector_value == 2) {
-                    textOut_prontAi = prontAiTranslate + textOut + " \"";
+                switch (prontAi_typeSelector_value) {
+                    case 0:
+                        textOut_prontAi = textOut;
+                        break;
+                    case 1:
+                        textOut_prontAi = prontAiSummary + textOut + " \"";
+                        break;
+                    case 2:
+                        textOut_prontAi = prontAiTranslate + textOut + " \"";
+                        break;
                 }
                 //console.log(textOut_prontAi);
                 navigator.clipboard.writeText(textOut_prontAi);
